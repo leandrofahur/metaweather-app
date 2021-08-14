@@ -13,7 +13,7 @@ export const Container = styled(motion.div)`
 
 export const Card = styled(motion.div)`
   display: flex;
-  width: 400px;
+  max-width: 600px;
   color: #333;
   background: #fff;
   margin-top: 5rem;

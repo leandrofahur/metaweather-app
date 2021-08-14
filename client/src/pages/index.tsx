@@ -87,15 +87,15 @@ export default function Home() {
     >
       {forecast === undefined ? (
         <Card
-          initial={{ x: -150 }}
-          animate={{ x: 0 }}
-          transition={{ duration: 1 }}
+        // initial={{ x: -150 }}
+        // animate={{ x: 0 }}
+        // transition={{ duration: 1 }}
         >
-          <Image src={NoImage} alt="No icon" width={200} height={200} />
+          <Image src={NoImage} alt="No icon" width={300} height={300} />
           <Info
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2, easings: 'easeInOut' }}
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // transition={{ duration: 2, easings: 'easeInOut' }}
           >
             No information to display
           </Info>
@@ -104,22 +104,25 @@ export default function Home() {
         <Card>
           <Image
             src={forecast.weather_icons.at(0) as string}
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             alt="Weather icon"
           />
           <Info>
             <h4>
-              Name:<span>{forecast.name}</span>
+              City:<span>{forecast.name}</span>
             </h4>
             <h4>
               Country:<span>{forecast.country}</span>
             </h4>
             <h4>
+              Weather:<span>{forecast.weather_descriptions}</span>
+            </h4>
+            <h4>
               Temperature:<span>{forecast.temperature}</span>°C
             </h4>
             <h4>
-              Feelslike:<span>{forecast.feelslike}</span>°C
+              Feels like:<span>{forecast.feelslike}</span>°C
             </h4>
           </Info>
         </Card>
