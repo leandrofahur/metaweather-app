@@ -1,12 +1,17 @@
 import { useState, ChangeEvent, MouseEvent } from 'react';
 
 import { api } from '../services/api';
-import { motion } from 'framer-motion';
 
 import { BsSearch } from 'react-icons/bs';
 
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+
+import { Container, Card } from './styles';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 export default function Home() {
   const [cityName, setCityName] = useState<string>('');
@@ -21,7 +26,11 @@ export default function Home() {
   ) => {
     event.preventDefault();
     if (cityName === undefined || cityName === '') {
-      console.log('Please enter city name');
+      toast.error('Please Insert The City Name', {
+        pauseOnHover: true,
+        closeOnClick: true,
+        position: 'bottom-right',
+      });
       return;
     }
 
@@ -37,14 +46,10 @@ export default function Home() {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '50%',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+    <Container
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
     >
       <Input
         type="text"
@@ -64,6 +69,6 @@ export default function Home() {
       >
         Search
       </Button>
-    </div>
+    </Container>
   );
 }
