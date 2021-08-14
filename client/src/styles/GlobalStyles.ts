@@ -4,14 +4,11 @@ import styled from 'styled-components';
 export default createGlobalStyle`
   :root {
     --black: #000000;    
-    
-    --light-gray: #E1E1E6;
-    --gray: #A8A8B3;
-    --dark-gray: #121214;
-    --light-red: #FF3333;
-    --red: #C23E3C;
-    --yellow: #EBA417;
     --white: #FFFFFF; 
+    --light-blue: #3A21DB;    
+    --dark-purple: #10093E;
+;
+
   }
   * {
     margin: 0;
@@ -40,8 +37,29 @@ export default createGlobalStyle`
   }
   
   body { 
-    background: var(--dark-gray);
+    background-image: radial-gradient(var(--light-blue), var(--dark-purple));
     color: var(--white);
+    animation: radialColorAnimation 5s infinite alternate linear;
+  }
+
+  @keyframes radialColorAnimation {
+    from { /* radial-gradient(farthest-corner at top right, ..) */
+    background-position:left top;
+    background-size:200% 100%;  
+    }
+    49.9% {
+      background-position:left top;  
+    }
+    50% { /* radial-gradient(farthest-corner at top center, ..) */
+      background-size:100% 100%;
+    }
+    50.1% {
+      background-position:right top; 
+    }
+    to { /* radial-gradient(farthest-corner at top left, ..) */
+      background-position:right top;
+      background-size:200% 100%;
+    }
   }
 
   body, input, textarea, select, button {
