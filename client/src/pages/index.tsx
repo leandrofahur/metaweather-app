@@ -86,7 +86,11 @@ export default function Home() {
       transition={{ duration: 1 }}
     >
       {forecast === undefined ? (
-        <Card>
+        <Card
+          initial={{ x: -150 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <Image src={NoImage} alt="No icon" width={200} height={200} />
           <Info>No information to display</Info>
         </Card>
