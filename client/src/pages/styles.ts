@@ -7,21 +7,22 @@ export const Container = styled(motion.div)`
   width: 100%;
   justify-content: center;
   align-items: center;
-  padding-top: 4rem;
+
   height: 100vh;
 `;
 
 export const Card = styled(motion.div)`
   display: flex;
-  max-width: 600px;
+  width: 500px;
   color: #333;
   background: #fff;
-  margin-top: 5rem;
+  border-radius: 3px;
 `;
 
 export const Info = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   justify-content: center;
   padding: 0.5rem 1rem;

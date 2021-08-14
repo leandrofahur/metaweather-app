@@ -2,13 +2,14 @@ import Image from 'next/image';
 
 import { useState, ChangeEvent, MouseEvent } from 'react';
 
-import { api } from '../services/api';
+import { weatherApi } from '../services/weatherApi';
 
 import { BsSearch } from 'react-icons/bs';
 import NoImage from '../assets/noImage.png';
 
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { Map } from '../components/Map';
 
 import { Container, Card, Info } from './styles';
 
@@ -19,9 +20,11 @@ toast.configure();
 interface IRequest {
   name: string;
   country: string;
+  latitude: number;
+  longitude: number;
   temperature: number;
   feelslike: number;
-  weather_icons: string[] | '';
+  weather_icons: string[];
   weather_descriptions: string[];
   humidity: number;
 }
@@ -29,15 +32,6 @@ interface IRequest {
 export default function Home() {
   const [cityName, setCityName] = useState<string>('');
   const [forecast, setForecast] = useState<IRequest>();
-  //   {
-  //   name: '',
-  //   country: '',
-  //   temperature: 0,
-  //   feelslike: 0,
-  //   weather_icons: [],
-  //   weather_descriptions: [''],
-  //   humidity: 0,
-  // });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -49,10 +43,10 @@ export default function Home() {
   ) => {
     event.preventDefault();
     if (cityName === undefined || cityName === '') {
-      toast.error('Please Insert The City Name', {
+      toast.error('Please insert the city name', {
         pauseOnHover: true,
         closeOnClick: true,
-        position: 'bottom-right',
+        position: 'top-right',
       });
       return;
     }
@@ -63,20 +57,23 @@ export default function Home() {
   };
 
   const requestForecast = async (cityName: string) => {
-    const result = await api.get(
-      `/current?access_key=${process.env.API_KEY}&query=${cityName}`,
+    const result = await weatherApi.get(
+      `/current?access_key=${process.env.API_KEY}&query=${cityName}&forecast_days=7`,
     );
+
+    console.log(result);
 
     setForecast({
       name: result.data.location.name,
       country: result.data.location.country,
+      latitude: result.data.location.lat,
+      longitude: result.data.location.lon,
       temperature: result.data.current.temperature,
       feelslike: result.data.current.feelslike,
       weather_icons: result.data.current.weather_icons,
       weather_descriptions: result.data.current.weather_descriptions,
       humidity: result.data.current.humidity,
     });
-    console.log(forecast);
   };
 
   return (
@@ -145,6 +142,11 @@ export default function Home() {
       >
         Search
       </Button>
+      {forecast === undefined ? (
+        <Map latitude={40.714} longitude={-74.006} />
+      ) : (
+        <Map latitude={forecast.latitude} longitude={forecast.longitude} />
+      )}
     </Container>
   );
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const api = axios.create({
+const weatherApi = axios.create({
   baseURL: 'http://api.weatherstack.com/',
 });
 
-export { api };
+export { weatherApi };
