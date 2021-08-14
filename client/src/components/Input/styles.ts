@@ -8,7 +8,7 @@ export const Container = styled(motion.div)`
   background: #cccccc;
   color: #fff;
   border: 1px solid #000;
-  margin-top: 1rem;
+  margin-top: 4rem;
   border-radius: 5px;
   svg {
     height: 20px;

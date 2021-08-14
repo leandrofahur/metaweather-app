@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 
 export const MotionButton = styled(motion.button)`
   display: flex;
-  flex: 1;
   justify-content: center;
   align-items: center;
   font-size: 1rem;
@@ -15,6 +14,7 @@ export const MotionButton = styled(motion.button)`
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   width: 211px;
+
   svg {
     height: 20px;
     width: 20px;
