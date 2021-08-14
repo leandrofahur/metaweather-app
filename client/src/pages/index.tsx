@@ -92,7 +92,13 @@ export default function Home() {
           transition={{ duration: 1 }}
         >
           <Image src={NoImage} alt="No icon" width={200} height={200} />
-          <Info>No information to display</Info>
+          <Info
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2, easings: 'easeInOut' }}
+          >
+            No information to display
+          </Info>
         </Card>
       ) : (
         <Card>
